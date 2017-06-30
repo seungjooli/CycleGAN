@@ -32,7 +32,7 @@ class DataLoader:
             filename_queue = tf.train.string_input_producer(image_paths, name=name, shuffle=shuffle)
             reader = tf.WholeFileReader()
             key, value = reader.read(filename_queue)
-            image = tf.image.decode_image(value)
+            image = tf.image.decode_image(value, channels=3)
             image = tf.image.convert_image_dtype(image, dtype=tf.float32)
             image.set_shape([None, None, 3])
 
