@@ -174,6 +174,7 @@ class Model:
                 if global_step_value % self.flags.save_log_freq == 0:
                     training_summary_value = self.sess.run(training_summary, feed_dict=feed_dict)
                     writer.add_summary(training_summary_value, global_step_value)
+                    self.print_log('Saved summary')
 
                 if global_step_value % self.flags.save_ckpt_freq == 0:
                     self.save()
@@ -234,7 +235,7 @@ class Model:
         if self.saver is None:
             self.saver = tf.train.Saver()
         self.saver.save(self.sess, self.flags.ckpt_dir, global_step=self.global_step)
-        self.print_log('Saved checkpoint and summary')
+        self.print_log('Saved checkpoint')
 
     def load(self):
         ckpt = tf.train.get_checkpoint_state(self.flags.ckpt_dir)
