@@ -8,7 +8,7 @@ random_seed = 0
 class DataLoader:
     def __init__(self, flags):
         self.flags = flags
-        paths = DataLoader.get_image_paths(self.flags.data_dir)
+        paths = DataLoader.get_image_paths(os.path.join(self.flags.data_dir , self.flags.name))
         self.paths_trainA = [path for path in paths if 'trainA' in path]
         self.paths_trainB = [path for path in paths if 'trainB' in path]
         self.paths_testA = [path for path in paths if 'testA' in path]
