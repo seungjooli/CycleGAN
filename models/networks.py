@@ -91,9 +91,9 @@ class ResidualBlock:
 
     def forward(self, input_):
         with tf.variable_scope(self.name):
-            conv_output = None
+            conv_output = input_
             for block in self.conv_blocks:
-                conv_output = block.forward(input_)
+                conv_output = block.forward(conv_output)
 
             output = input_ + conv_output
             return output
